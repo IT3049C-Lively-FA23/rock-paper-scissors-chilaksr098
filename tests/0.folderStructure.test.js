@@ -4,6 +4,8 @@ const _ = require(`lodash`);
 describe(`folder structure`, function () {
   test(`root directory is properly setup`, () => {
   const rootTree = dirTree(`${__dirname}/..`);
+  console.log("Root directory tree:", rootTree);
+
   const nodes = rootTree.children.map(node => node.name);
 
   const expectedNodes = [
@@ -21,6 +23,7 @@ describe(`folder structure`, function () {
 
   expect(nodes).toEqual(expectedNodes);
 });
+
 
 
 
