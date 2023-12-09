@@ -33,6 +33,7 @@ describe(`folder structure`, function () {
 
 
 
+
   test(`resources directory is properly setup`, () => {
     const resourcesTree = dirTree(`${__dirname}/../resources`);
     const nodes = resourcesTree.children.map(node => node.name);
