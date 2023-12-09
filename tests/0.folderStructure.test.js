@@ -3,16 +3,21 @@ const _ = require(`lodash`);
 
 describe(`folder structure`, function () {
   test(`root directory is properly setup`, () => {
-    const rootTree = dirTree(`${__dirname}/..`);
-    const nodes = rootTree.children.map(node => node.name);
+  const rootTree = dirTree(`${__dirname}/..`);
+  const nodes = rootTree.children.map(node => node.name);
 
-    
-    const expectedNodes = [".git", ".github", ".vscode", "resources", "tests", ".gitignore", ".babelrc", ".eslintrc.json", ".gitignore", ".prettierrc", "jest.config.js", "index.html", "package.json", "README.md"];
-    nodes.sort();
+  const expectedNodes = [".git", ".github", ".vscode", "resources", "tests", ".gitignore", ".babelrc", ".eslintrc.json", ".prettierrc", "jest.config.js", "index.html", "package.json", "README.md"];
+
+  // Sort both arrays before comparison
+  nodes.sort();
   expectedNodes.sort();
 
+  console.log("Received nodes:", nodes);
+  console.log("Expected nodes:", expectedNodes);
+
   expect(nodes).toEqual(expectedNodes);
-  });
+});
+
 
   test(`resources directory is properly setup`, () => {
     const resourcesTree = dirTree(`${__dirname}/../resources`);
