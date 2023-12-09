@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Type your title here</title>
+    <title>Rock Paper Scissors</title>
     <!-- Bootstrap Styles-->
     <link rel="stylesheet" href="resources/styles/bootstrap.min.css">
     <link rel="stylesheet" href="resources/styles/styles.css" />
@@ -12,13 +12,45 @@
 
 <body>
     <div class="container">
-        <!-- WORK FROM INSIDE THIS CONTAINER-->
+    <!-- WORK FROM INSIDE THIS CONTAINER-->
+        <h1>rock paper scissors</h1>
+        <!--welcome-->
+        <div id="welcome-screen">
+                <form id="name-form">
+                        <div class="form-group">
+                            <label for="username">Your Name: </label>
+                            <input type="text" id="username" class="form-control" name="username" placeholder="Enter Name Here...">
+                        </div>
+                        <button type="button" id="start-game-button" class="btn btn-primary" data-toggle="buttons">Start Game!</button>
+                </form>        
+        </div>
+        <!--game-->
+        <div id="game-screen">
+            <div id="score-tally">
+                <p id="score">User: 0 v CPU: 0</p>
+            </div>
+            <form id="game-form">
+                <div class="form-group">
+                    <label for="user-selection">Select your choice: </label>
+                    <select name="user-selection" class="custom-select" id="user-selection">
+                        <option value="Rock">Rock</option>
+                        <option value="Paper">Paper</option>
+                        <option value="Scissors">Scissors</option>
+                    </select>
+                </div>
+                <button type="button" id="go-button" class="btn btn-success" data-toggle="buttons">Go!</button>
+                <button type="button" id="rest-button" class="btn btn-warning" data-toggle="buttons">Rest!</button>
+            </form>
+            <p id="game-history"> </p>
+        </div>
+
 
     </div>
 
     <!-- Our own Scripts -->
     <script src="resources/scripts/rock_paper_scissors.js"></script>
     <script src="resources/scripts/index.js"></script>
+    
 </body>
 
 </html>
