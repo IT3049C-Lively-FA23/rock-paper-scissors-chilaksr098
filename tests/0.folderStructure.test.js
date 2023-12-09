@@ -1,5 +1,4 @@
 const dirTree = require(`directory-tree`);
-const _ = require(`lodash`);
 const fs = require('fs');
 
 describe(`folder structure`, function () {
