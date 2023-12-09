@@ -1,31 +1,35 @@
-const dirTree = require(`directory-tree`);
+const dirTree = require('directory-tree');
 const fs = require('fs');
 
 describe(`folder structure`, function () {
   test(`root directory is properly setup`, () => {
-  const rootPath = `${__dirname}/..`;
+    const rootPath = `${__dirname}/..`;
 
-  // Check if .babelrc and .prettierrc files exist in the root directory
-  const babelrcExists = fs.existsSync(`${rootPath}/.babelrc`);
-  const prettierrcExists = fs.existsSync(`${rootPath}/.prettierrc`);
+    // Check if .babelrc and .prettierrc files exist in the root directory in a case-insensitive manner
+    const filesInRoot = fs.readdirSync(rootPath);
+    const isBabelrcExists = filesInRoot.some(file => file.toLowerCase() === '.babelrc');
+    const isPrettierrcExists = filesInRoot.some(file => file.toLowerCase() === '.prettierrc');
 
-  // Use a separate array for files that should exist
-  const expectedFiles = ['.babelrc', '.eslintrc.json', '.gitignore', '.prettierrc', '.vscode', 'README.md', 'babel.config.js', 'index.html', 'jest.config.js', 'package.json'];
+    // Use a separate array for files that should exist
+    const expectedFiles = ['.babelrc', '.eslintrc.json', '.gitignore', '.prettierrc', '.vscode', 'README.md', 'babel.config.js', 'index.html', 'jest.config.js', 'package.json'];
 
-  // Assert that all expected files exist in the root directory
-  expect(babelrcExists).toBe(true);
-  expect(prettierrcExists).toBe(true);
+    // Assert that all expected files exist in the root directory
+    expect(isBabelrcExists).toBe(true);
+    expect(isPrettierrcExists).toBe(true);
 
-  // Check the remaining expected files
-  expectedFiles.forEach(file => {
-    expect(fs.existsSync(`${rootPath}/${file}`)).toBe(true);
+    // Check the remaining expected files
+    expectedFiles.forEach(file => {
+      expect(fs.existsSync(`${rootPath}/${file}`)).toBe(true);
+    });
+
+    // Verify that no unexpected files are present
+    const unexpectedFiles = filesInRoot.filter(file => !expectedFiles.includes(file.toLowerCase()));
+    expect(unexpectedFiles.length).toBe(0);
   });
 
-  // Verify that no unexpected files are present
-  const unexpectedFiles = fs.readdirSync(rootPath);
-  const unexpectedFilesExist = unexpectedFiles.some(file => !expectedFiles.includes(file));
-  expect(unexpectedFilesExist).toBe(false);
+  // ... (your other tests remain unchanged)
 });
+
 
 
 
