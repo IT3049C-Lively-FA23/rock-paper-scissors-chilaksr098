@@ -6,7 +6,11 @@ describe(`folder structure`, function () {
   const rootTree = dirTree(`${__dirname}/..`);
   const nodes = rootTree.children.map(node => node.name);
 
-  const expectedNodes = [".git", ".github", ".vscode", "resources", "tests", ".gitignore", ".babelrc", ".eslintrc.json", ".prettierrc", "jest.config.js", "index.html", "package.json", "README.md"];
+  const expectedNodes = [
+    ".babelrc", ".eslintrc.json", ".git", ".github", ".gitignore",
+    ".prettierrc", ".vscode", "README.md", "babel.config.js", "index.html",
+    "jest.config.js", "package.json", "resources", "tests"
+  ];
 
   // Sort both arrays before comparison
   nodes.sort();
@@ -17,6 +21,7 @@ describe(`folder structure`, function () {
 
   expect(nodes).toEqual(expectedNodes);
 });
+
 
 
   test(`resources directory is properly setup`, () => {
