@@ -3,27 +3,29 @@ const _ = require(`lodash`);
 
 describe(`folder structure`, function () {
   test(`root directory is properly setup`, () => {
-  const rootTree = dirTree(`${__dirname}/..`);
-  console.log("Root directory tree:", rootTree);
+  const rootPath = `${__dirname}/..`;
 
-  const nodes = rootTree.children.map(node => node.name);
+  // Check if .babelrc and .prettierrc files exist in the root directory
+  const babelrcExists = fs.existsSync(`${rootPath}/.babelrc`);
+  const prettierrcExists = fs.existsSync(`${rootPath}/.prettierrc`);
 
-  const expectedNodes = [
-    ".babelrc", ".eslintrc.json", ".git", ".github", ".gitignore",
-    ".prettierrc", ".vscode", "README.md", "babel.config.js", "index.html",
-    "jest.config.js", "package.json", "resources", "tests"
-  ];
+  // Use a separate array for files that should exist
+  const expectedFiles = ['.babelrc', '.eslintrc.json', '.gitignore', '.prettierrc', '.vscode', 'README.md', 'babel.config.js', 'index.html', 'jest.config.js', 'package.json'];
 
-  // Sort both arrays before comparison
-  nodes.sort();
-  expectedNodes.sort();
+  // Assert that all expected files exist in the root directory
+  expect(babelrcExists).toBe(true);
+  expect(prettierrcExists).toBe(true);
 
-  console.log("Received nodes:", nodes);
-  console.log("Expected nodes:", expectedNodes);
+  // Check the remaining expected files
+  expectedFiles.forEach(file => {
+    expect(fs.existsSync(`${rootPath}/${file}`)).toBe(true);
+  });
 
-  expect(nodes).toEqual(expectedNodes);
+  // Verify that no unexpected files are present
+  const unexpectedFiles = fs.readdirSync(rootPath);
+  const unexpectedFilesExist = unexpectedFiles.some(file => !expectedFiles.includes(file));
+  expect(unexpectedFilesExist).toBe(false);
 });
-
 
 
 
