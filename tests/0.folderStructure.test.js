@@ -8,7 +8,10 @@ describe(`folder structure`, function () {
 
     
     const expectedNodes = [".git", ".github", ".vscode", "resources", "tests", ".gitignore", ".babelrc", ".eslintrc.json", ".gitignore", ".prettierrc", "jest.config.js", "index.html", "package.json", "README.md"];
-    expect(nodes).toEqual(expect.arrayContaining(expectedNodes));
+    nodes.sort();
+  expectedNodes.sort();
+
+  expect(nodes).toEqual(expectedNodes);
   });
 
   test(`resources directory is properly setup`, () => {
